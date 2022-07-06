@@ -8,6 +8,7 @@ import Utils.doDebug
 import Utils.errorChances
 import Utils.hidePercentage
 import Utils.printChoker
+import Utils.replaceAt
 import Utils.title
 import Utils.toError
 import Utils.toInfo
@@ -67,11 +68,13 @@ fun main(args: Array<String>) {
                     } else {
                         usedWords.add(l)
                         if (word.contains(l)) {
+                            val index = mutableSetOf<Int>()
                             for (i in word.indices) {
                                 if (word[i] == l) {
-                                    hiddenWord[i] = word[i]
+                                    index.add(i)
                                 }
                             }
+                            hiddenWord.replaceAt(l, index)
                             println(hiddenWord.toInfo())
                         } else {
                             chances--

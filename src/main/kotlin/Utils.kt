@@ -112,6 +112,16 @@ object Utils {
         return "$scoreString$this$scoreString"
     }
 
+    fun StringBuilder.replaceAt(char: Char, index: Collection<Int>) {
+        if (index.any { it !in this.indices}) return
+        for(i in index) {
+            this[i] = char
+        }
+        doDebug {
+            println(this.toString())
+        }
+    }
+
     fun printChoker (currentChances: Int) {
         val errors = (currentChances * 100 / errorChances)
         doDebug { println(errors) }
