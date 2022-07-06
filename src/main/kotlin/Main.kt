@@ -33,9 +33,11 @@ fun main(args: Array<String>) {
     while (cycle) {
         val word = availableWords[Random.nextInt(availableWords.size)]
         val hiddenWord = StringBuilder().append(word censorPercent hidePercentage)
+        val usedWords = mutableSetOf<Char>()
         println(hiddenWord.toInfo())
         while (hiddenWord.toString() != word && chances > 0) {
             printChoker(chances)
+            println(usedWords.toString().toInfo())
             var tryGuess = false
             if (hiddenWord.censorCount() < hiddenWord.length / 4) {
                 println("Intentar adivinar la frase/palabra? (s/n)".toInput())
@@ -60,15 +62,20 @@ fun main(args: Array<String>) {
                 val letter = readln()
                 if (letter.matches(Regex("([aA-zZ])"))) {
                     val l : Char = letter.first().lowercaseChar()
-                    if (word.contains(l)) {
-                        for (i in word.indices) {
-                            if (word[i] == l) {
-                                hiddenWord[i] = word[i]
-                            }
-                        }
-                        println(hiddenWord.toInfo())
-                    } else {
+                    if (usedWords.contains(l)) {
                         chances--
+                    } else {
+                        usedWords.add(l)
+                        if (word.contains(l)) {
+                            for (i in word.indices) {
+                                if (word[i] == l) {
+                                    hiddenWord[i] = word[i]
+                                }
+                            }
+                            println(hiddenWord.toInfo())
+                        } else {
+                            chances--
+                        }
                     }
                 }
                 else {
