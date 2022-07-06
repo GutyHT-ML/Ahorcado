@@ -109,7 +109,7 @@ object Utils {
         for (i in 0..scores / 2) {
             scoreString += "-"
         }
-        return "$bC$scoreString$this$scoreString$wC"
+        return "$scoreString$this$scoreString"
     }
 
     fun printChoker (currentChances: Int) {

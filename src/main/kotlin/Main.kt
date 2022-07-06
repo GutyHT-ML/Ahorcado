@@ -29,7 +29,7 @@ fun main(args: Array<String>) {
     var cycle = true
     var chances = errorChances
 
-    println("Ahorcado".title())
+    println("Ahorcado".title().toRainbow())
     while (cycle) {
         val word = availableWords[Random.nextInt(availableWords.size)]
         val hiddenWord = StringBuilder().append(word censorPercent hidePercentage)
@@ -87,7 +87,7 @@ fun main(args: Array<String>) {
             }
         }
         if (chances > 0) {
-            println("Felicidades :)".toRainbow())
+            println("Felicidades :)".title().toRainbow())
         }
         println("De nuevo? (s/n)".toInput())
         if (readln() == "s") {
